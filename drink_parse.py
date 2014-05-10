@@ -93,7 +93,8 @@ def get_ingredients(html):
   return ingredients
 
 # Returns ingredient information as a tuple. First element in the tuple is ABV
-# as a float, second element is a string with the amount of sugar.
+# as a float, second element is a string with the amount of sugar, third
+# element is the ingredient category..
 def get_ingredient_info(link):
   ingredient_html = urllib2.urlopen(DOMAIN + link).read()
 
@@ -131,7 +132,10 @@ def get_ingredient_info(link):
   if (sugar == '-'):
     sugar = '0 g'
 
-  return (abv, sugar)
+  soup = BeautifulSoup(ingredient_html)
+  category = soup.find('div', {'class': 'pm'}).findAll('a')[1].text
+
+  return (abv, sugar, category)
 
 if __name__ == "__main__":
   main()
