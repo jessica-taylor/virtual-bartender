@@ -1,0 +1,26 @@
+{
+  "name": "virtual-bartender",
+  "version": "0.0.1",
+  "description": "A dialogue system for ordering drinks.",
+  "license": "MIT",
+  "author": "Jessica Taylor <jessica.liu.taylor@gmail.com> (http://jessic.at/)",
+  "contributors": [
+    "Mario Villaplana <mario.villaplana@gmail.com>",
+    "Ryan Voldstad <ryanv88@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jessica-taylor/virtual-bartender.git"
+  },
+  "dependencies": {
+    "underscore": "1.6.x",
+    "async": "0.7.x",
+    "wait.for": "0.6.x",
+    "probabilistic-js": "https://github.com/dritchie/probabilistic-js/tarball/master"
+  },
+  "devDependencies": {
+    "mocha": "x.x.x",
+    "istanbul": "x.x.x",
+    "longjohn": "x.x.x"
+  }
+}
