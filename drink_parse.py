@@ -31,6 +31,8 @@ def main():
     html = f.read()
 
     drink['title'] = get_drink_title(html)
+    drink['directions'] = get_drink_directions(html)
+    print drink
 
 # Returns a list of tuples whose first element is the drink category and whose
 # second element is a URL pointing to a particular drink in that category.
@@ -52,6 +54,12 @@ def get_drink_title(html):
   title = soup.find('h1', {'class': 'recipe_title'}).text.replace(' recipe',
       '')
   return title
+
+def get_drink_directions(html):
+  soup = BeautifulSoup(html)
+  directions = soup.find('div', {'class':
+    'RecipeDirections'}).text.split('\n', 1)[0]
+  return directions
 
 if __name__ == "__main__":
   main()
