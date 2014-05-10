@@ -21,7 +21,7 @@ def main():
   cat_url_suffixes = find_drink_url_suffixes_and_cat()
   print(len(cat_url_suffixes))
 
-  drinks = set()
+  drinks = list()
 
   for (category, suffix) in cat_url_suffixes:
     drink = {}
@@ -32,7 +32,17 @@ def main():
 
     drink['title'] = get_drink_title(html)
     drink['directions'] = get_drink_directions(html)
-    print drink
+    drink['rating'] = get_drink_rating(html)
+    drinks.append(drink)
+  scores = list()
+  for drink in drinks:
+    rating = float(drink['rating'][0])
+    reviews = int(drink['rating'][1])
+    score = rating * (reviews ** .5)
+    scores.append((drink['title'], score))
+  scores.sort(lambda x,y: -y)
+  # print scores
+
 
 # Returns a list of tuples whose first element is the drink category and whose
 # second element is a URL pointing to a particular drink in that category.
@@ -54,6 +64,13 @@ def get_drink_title(html):
   title = soup.find('h1', {'class': 'recipe_title'}).text.replace(' recipe',
       '')
   return title
+
+def get_drink_rating(html):
+  soup = BeautifulSoup(html)
+  all= list(soup.find('div', {'class': 'ratingsBox rating'}).children)[1]
+  rating = list(all.children)[0].string
+  numReviews = all.find('span', {'class': 'count'}).string
+  return (rating, numReviews)
 
 def get_drink_directions(html):
   soup = BeautifulSoup(html)
