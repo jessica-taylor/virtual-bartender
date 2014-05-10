@@ -17,6 +17,7 @@
     "async": "0.7.x",
     "wait.for": "0.6.x",
     "browserify": "x.x.x",
+    "natural": "0.1.x",
     "probabilistic-js": "https://github.com/dritchie/probabilistic-js/tarball/master"
   },
   "devDependencies": {
