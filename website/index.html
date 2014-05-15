@@ -8,9 +8,15 @@
     <script type="text/javascript">
       var Bartender = require('./lib/bartender.js');
       var bartender = new Bartender.Bartender();
+      bartender.emitter.on('speech', function(speaker, speech) {
+        $('#chat-list').append(
+          $('<li class="list-group-item"></li>').text(speaker + ': ' + speech));
+      });
     </script>
   </head>
   <body>
     <h1>Virtual Bartender</h1>
+    <ul id="chat-list" class="list-group">
+    </ul>
   </body>
 </html>
