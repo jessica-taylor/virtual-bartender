@@ -9,8 +9,9 @@
       var Bartender = require('./lib/bartender.js');
       var bartender = new Bartender.Bartender();
       bartender.emitter.on('speech', function(speaker, speech) {
+        var liclass = speaker == 'system' ? 'success' : 'info';
         $('#chat-list').append(
-          $('<li class="list-group-item"></li>').text(speaker + ': ' + speech));
+          $('<li class="list-group-item list-group-item-' + liclass + '"></li>').text(speaker + ': ' + speech));
       });
     </script>
   </head>
