@@ -2,6 +2,7 @@
 
 from bs4 import BeautifulSoup,SoupStrainer
 import urllib2
+import json
 
 DOMAIN = 'http://www.drinksmixer.com'
 
@@ -24,7 +25,7 @@ def main():
 
   drinks = []
   ingredients = {}
-
+  ingr_out = open('ingredients_updated.json', 'w')
   for (category, suffix) in cat_url_suffixes:
     drink = {}
     drink['category'] = category
@@ -43,8 +44,10 @@ def main():
     for ingred in ingred_info:
       ingredient = get_ingredient_info(ingred['link'])
       ingredients[ingred['name']] = ingredient
+      #print ingredient
 
     drinks.append(drink)
+  ingr_out.write(json.dumps(ingredients))
 
 # Returns a list of tuples whose first element is the drink category and whose
 # second element is a URL pointing to a particular drink in that category.
@@ -140,8 +143,13 @@ def get_ingredient_info(link):
     sugar = '0 g'
 
   soup = BeautifulSoup(ingredient_html)
-  category = soup.find('div', {'class': 'pm'}).findAll('a')[1].text
-
+  category = list()
+  cat_links = soup.find('div', {'class':'pm'}).findAll('a')
+  for cat_link in cat_links[1:]:
+    link_str = cat_link.get('href')
+    if 'desc' not in link_str: 
+      break
+    category.append(cat_link.text)
   return (abv, sugar, category)
 
 if __name__ == "__main__":
