@@ -1,2 +1,2 @@
 #!/bin/bash
-node_modules/.bin/browserify -r ./lib/bartender.js -o website/bartender.js
+node_modules/.bin/browserify -t brfs -r ./lib/bartender.js -o website/bartender.js
