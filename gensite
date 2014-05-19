@@ -1,3 +1,5 @@
 #!/bin/bash
-node compile_pjs.js
+sed -i "s#require('probabilistic#require('../probabilistic#" node_modules/probabilistic-js/bin/p.js
+node node_modules/probabilistic-js/bin/p.js -p lib/inference.pjs
+sed -i "s#require('probabilistic#require('./probabilistic#" lib/inference.js
 node_modules/.bin/browserify -t brfs -r ./lib/bartender.js -o website/bartender.js
