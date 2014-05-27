@@ -20,7 +20,8 @@
     "brfs": "x.x.x",
     "natural": "0.1.x",
     "WNdb": "3.1.x",
-    "probabilistic-js": "https://github.com/dritchie/probabilistic-js/tarball/master"
+    "probabilistic-js": "https://github.com/dritchie/probabilistic-js/tarball/master",
+    "node-static": "0.7.x"
   },
   "devDependencies": {
     "mocha": "x.x.x",
